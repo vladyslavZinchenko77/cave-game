@@ -1,7 +1,8 @@
 import { useState } from 'react';
-
 import { getToken } from './services/gameService';
 import { useGameState } from './hooks/useGameState';
+
+import LoadingIndicator from './components/LoadingIndicator/LoadingIndicator';
 import StartGameForm from './components/StartGame/StartGameForm';
 import './App.scss';
 
@@ -23,7 +24,13 @@ function App() {
   };
 
   return (
-    <>{loading ? 'loading' : <StartGameForm onStartGame={handleStartGame} />}</>
+    <>
+      {loading ? (
+        <LoadingIndicator />
+      ) : (
+        <StartGameForm onStartGame={handleStartGame} />
+      )}
+    </>
   );
 }
 
